@@ -1,37 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# QuestIDE Frontend 🚀
 
-## Getting Started
+AI-native coding workspace for modern developers.
 
-First, run the development server:
+QuestIDE transforms coding problems into a complete interactive coding environment with:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+* AI-powered parsing
+* Monaco editor
+* testcase validation
+* contextual coding assistant
+* intelligent coding workflows
+
+---
+
+## ✨ Features
+
+* 🧠 AI Problem Parsing
+* 💻 Monaco Code Editor
+* ⚡ Run & Submit Workflow
+* 🧪 Public + Hidden Testcases
+* 🤖 Contextual AI Coding Assistant
+* 🌙 Premium Developer UI
+* 🧩 Multi-language Support
+* 📊 Verdict & Submission System
+* 🛠 Custom Input Execution
+* 🧠 AI-generated Coding Workspace
+
+---
+
+## 🏗 Tech Stack
+
+* Next.js
+* TypeScript
+* Tailwind CSS
+* Monaco Editor
+* Axios
+* NVIDIA NIM APIs
+
+---
+
+## ⚙️ Environment Setup
+
+Create `.env.local`
+
+```env id="fr1"
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Run Locally
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Install dependencies:
 
-## Learn More
+```bash id="fr2"
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+Start development server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash id="fr3"
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🔗 Related Repositories
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Backend:
+[QuestIDE Backend](https://github.com/jiviteshh/Quest_IDE_Backend?utm_source=chatgpt.com)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-"# Quest_IDE_Frontend" 
+Piston Infrastructure:
+[QuestIDE Piston Infrastructure](https://github.com/jiviteshh/questide-piston?utm_source=chatgpt.com)
+
+---
+
+## 📸 Screenshots
+
+Add:
+
+* Homepage
+* Coding Workspace
+* AI Assistant
+* Submission Result
+* Testcase Panels
+
+---
+
+## 👨‍💻 Developed By
+
+Jivitesh Naragam
+
+LinkedIn:
+[Naragam Jivitesh LinkedIn](https://www.linkedin.com/in/naragam-jivitesh-71a4b8313/?utm_source=chatgpt.com)
+
+Feedback:
+[jivinaragam@gmail.com](mailto:jivinaragam@gmail.com)
+
+---
+
+## © Copyright
+
+© 2026 QuestIDE. All rights reserved.
+
+Unauthorized copying, redistribution, or commercial usage without permission is prohibited.
