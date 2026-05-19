@@ -220,26 +220,16 @@ export default function APIKeyOnboardingModal({
                       "Save Key"
                     )}
                   </button>
-                  <button
-                    onClick={() => setShowGuide(true)}
-                    className="rounded-lg border border-zinc-600 bg-zinc-800/50 px-3 py-2.5 text-sm font-medium text-zinc-300 transition hover:border-zinc-500 hover:bg-zinc-700/50"
-                    title="View step-by-step guide"
-                  >
-                    <svg
-                      className="h-4 w-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                  </button>
                 </div>
+
+                {/* How to Get a Key Button */}
+                <button
+                  type="button"
+                  onClick={() => setShowGuide(true)}
+                  className="w-full rounded-lg border border-blue-500/30 bg-blue-500/10 px-4 py-2.5 text-sm font-medium text-blue-300 transition hover:border-blue-500/50 hover:bg-blue-500/15"
+                >
+                  📖 How to Get an API Key
+                </button>
               </div>
 
               {/* Info Text */}
