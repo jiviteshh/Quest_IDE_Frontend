@@ -240,14 +240,6 @@ export default function APIKeyOnboardingModal({
                     </svg>
                   </button>
                 </div>
-
-                {/* Skip option */}
-                <button
-                  onClick={handleSkip}
-                  className="w-full rounded-lg border border-zinc-700 bg-transparent px-4 py-2 text-sm font-medium text-zinc-400 transition hover:border-zinc-600 hover:bg-zinc-800/30 hover:text-zinc-300"
-                >
-                  Skip for now
-                </button>
               </div>
 
               {/* Info Text */}
