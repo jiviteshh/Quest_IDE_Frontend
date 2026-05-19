@@ -270,14 +270,14 @@ export default function APIKeyOnboardingModal({
                     <span className="text-xs font-bold text-blue-300">1</span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-sm font-semibold text-zinc-100">Go to NVIDIA Build</h3>
+                    <h3 className="text-sm font-semibold text-zinc-100">Go to NVIDIA Build Models</h3>
                     <a
-                      href="https://build.nvidia.com/"
+                      href="https://build.nvidia.com/models"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="mt-1 inline-block rounded bg-blue-500/20 px-2 py-1 text-xs font-mono text-blue-300 transition hover:bg-blue-500/30"
                     >
-                      https://build.nvidia.com/ ↗
+                      https://build.nvidia.com/models ↗
                     </a>
                   </div>
                 </div>
@@ -288,90 +288,54 @@ export default function APIKeyOnboardingModal({
                     <span className="text-xs font-bold text-blue-300">2</span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-sm font-semibold text-zinc-100">Login or Create Account</h3>
+                    <h3 className="text-sm font-semibold text-zinc-100">Sign In or Create Account</h3>
                     <p className="mt-1 text-xs text-zinc-400">
-                      Sign in with your NVIDIA account or create a new one.
+                      Sign in with your NVIDIA account or create a new one to proceed.
                     </p>
                   </div>
                 </div>
 
-                {/* Step 3 - NEW: Models Page */}
+                {/* Step 3 */}
                 <div className="flex gap-3">
                   <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border-2 border-green-500 bg-green-500/20">
                     <span className="text-xs font-bold text-green-300">3</span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-sm font-semibold text-zinc-100">Check Available Models</h3>
+                    <h3 className="text-sm font-semibold text-zinc-100">Search for QuestIDE Model</h3>
                     <p className="mt-1 text-xs text-zinc-400">
-                      Navigate to the Models page to confirm you have access to:
+                      Search for and open the free model:
                     </p>
                     <p className="mt-2 text-xs font-mono font-bold text-green-400 bg-green-500/10 border border-green-500/30 rounded px-2 py-1">
                       qwen/qwen3-coder-480b-a35b-instruct
                     </p>
-                    <a
-                      href="https://build.nvidia.com/models"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-2 inline-block rounded bg-green-500/20 px-2 py-1 text-xs font-mono text-green-300 transition hover:bg-green-500/30"
-                    >
-                      https://build.nvidia.com/models ↗
-                    </a>
                   </div>
                 </div>
 
-                {/* Step 4 - Renumbered */}
+                {/* Step 4 */}
                 <div className="flex gap-3">
                   <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border-2 border-blue-500 bg-blue-500/20">
                     <span className="text-xs font-bold text-blue-300">4</span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-sm font-semibold text-zinc-100">Navigate to API Keys</h3>
-                    <a
-                      href="https://build.nvidia.com/settings/api-keys"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-1 inline-block rounded bg-blue-500/20 px-2 py-1 text-xs font-mono text-blue-300 transition hover:bg-blue-500/30"
-                    >
-                      https://build.nvidia.com/settings/api-keys ↗
-                    </a>
+                    <h3 className="text-sm font-semibold text-zinc-100">Generate API Key</h3>
+                    <p className="mt-1 text-xs text-zinc-400">
+                      Click <span className="font-mono text-zinc-300">"View Code"</span> at the top-right, then click <span className="font-mono text-zinc-300">"Generate API Key"</span>.
+                    </p>
+                    <p className="mt-2 text-xs text-blue-300/80 bg-blue-500/10 border border-blue-500/30 rounded px-2 py-1">
+                      The code snippet will auto-populate with your new API key.
+                    </p>
                   </div>
                 </div>
 
-                {/* Step 5 - Renumbered */}
+                {/* Step 5 */}
                 <div className="flex gap-3">
                   <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border-2 border-blue-500 bg-blue-500/20">
                     <span className="text-xs font-bold text-blue-300">5</span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-sm font-semibold text-zinc-100">Generate New API Key</h3>
+                    <h3 className="text-sm font-semibold text-zinc-100">Copy & Paste Your Key</h3>
                     <p className="mt-1 text-xs text-zinc-400">
-                      Click the "Generate API Key" button to create a new key.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Step 6 - Renumbered */}
-                <div className="flex gap-3">
-                  <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border-2 border-blue-500 bg-blue-500/20">
-                    <span className="text-xs font-bold text-blue-300">6</span>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-sm font-semibold text-zinc-100">Copy Your Key</h3>
-                    <p className="mt-1 text-xs text-zinc-400">
-                      Copy the generated API key. Save it safely!
-                    </p>
-                  </div>
-                </div>
-
-                {/* Step 7 - Renumbered */}
-                <div className="flex gap-3">
-                  <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border-2 border-blue-500 bg-blue-500/20">
-                    <span className="text-xs font-bold text-blue-300">7</span>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-sm font-semibold text-zinc-100">Paste into QuestIDE</h3>
-                    <p className="mt-1 text-xs text-zinc-400">
-                      Come back and paste your key in the input field.
+                      Copy the generated API key from the code snippet and paste it into the field above.
                     </p>
                   </div>
                 </div>
@@ -386,12 +350,12 @@ export default function APIKeyOnboardingModal({
                   ← Back
                 </button>
                 <a
-                  href="https://build.nvidia.com/settings/api-keys"
+                  href="https://build.nvidia.com/models"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 px-4 py-2 text-center text-sm font-semibold text-white transition hover:from-blue-500 hover:to-blue-600"
+                  className="flex-1 rounded-lg bg-gradient-to-r from-green-600 to-green-700 px-4 py-2 text-center text-sm font-semibold text-white transition hover:from-green-500 hover:to-green-600"
                 >
-                  Open NVIDIA Build ↗
+                  Open NVIDIA Models ↗
                 </a>
               </div>
             </>
