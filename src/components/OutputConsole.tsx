@@ -1,5 +1,4 @@
 import VerdictBadge from "@/src/components/VerdictBadge";
-import ExecutionMetaPanel from "@/src/components/ExecutionMetaPanel";
 import type { RunCodeResponse, RunVerdict } from "@/src/types/judge";
 
 type OutputConsoleProps = {
@@ -9,28 +8,26 @@ type OutputConsoleProps = {
   errorMessage?: string | null;
 };
 
-function Block({ label, content, tone = "neutral" }: { label: string; content?: string | null; tone?: "neutral" | "error" }) {
+function Block({ label, content }: { label: string; content?: string | null }) {
   return (
-    <div
-      className={`rounded-md border p-3 ${
-        tone === "error"
-          ? "border-rose-500/30 bg-rose-950/20"
-          : "border-zinc-800 bg-zinc-950/80"
-      }`}
-    >
-      <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-zinc-400">{label}</p>
-      <pre className="max-h-36 overflow-auto whitespace-pre-wrap font-mono text-xs text-zinc-200">
+    <div className="rounded-md border border-zinc-800 bg-zinc-950/80 p-3">
+      <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-zinc-400">
+        {label}
+      </p>
+      <pre className="max-h-36 overflow-auto whitespace-pre-wrap break-words font-mono text-xs text-zinc-200">
         {content?.trim() ? content : "No output"}
       </pre>
     </div>
   );
 }
 
-export default function OutputConsole({ result, runVerdict, isLoading = false, errorMessage }: OutputConsoleProps) {
-  const stderr = result?.stderr ?? "";
-  const compileOutput = result?.compile_output ?? "";
-  const message = result?.message ?? result?.status?.description ?? "";
-  const hasErrorOutput = Boolean(stderr.trim() || compileOutput.trim() || errorMessage?.trim() || message.trim());
+export default function OutputConsole({
+  result,
+  runVerdict,
+  isLoading = false,
+  errorMessage,
+}: OutputConsoleProps) {
+  const message = errorMessage ?? result?.message ?? result?.status?.description ?? "";
   const hasRunResult = Boolean(result || errorMessage);
 
   return (
@@ -47,36 +44,14 @@ export default function OutputConsole({ result, runVerdict, isLoading = false, e
         <p className="mb-2 text-[11px] uppercase tracking-wide text-zinc-500">terminal</p>
         <pre className="max-h-52 overflow-auto whitespace-pre-wrap break-words font-mono text-xs text-zinc-200">
           {!hasRunResult
-            ? "Run code to see execution output."
+            ? "Run your solution to analyze execution."
             : result?.stdout?.trim()
               ? result.stdout
-              : result?.stderr?.trim()
-                ? result.stderr
-                : message.trim()
-                  ? message
-                  : "No output"}
+              : message.trim() || "No output"}
         </pre>
       </div>
 
-      <div className="grid gap-3 md:grid-cols-2">
-        <Block label="stdout" content={result?.stdout} />
-        <Block label="stderr" tone="error" content={result?.stderr} />
-        <Block
-          label="execution details"
-          content={`language: ${result?.language ?? "n/a"}\nversion: ${result?.version ?? "n/a"}\nstatus: ${result?.status?.id ?? "n/a"}\nexit_code: ${result?.exit_code ?? "n/a"}`}
-        />
-        <ExecutionMetaPanel result={result} />
-      </div>
-
-      {hasErrorOutput ? (
-        <div className="mt-3">
-          <Block
-            label="error panel (stderr / compile output)"
-            tone="error"
-            content={[errorMessage, message, compileOutput, stderr].filter(Boolean).join("\n\n")}
-          />
-        </div>
-      ) : null}
+      <Block label="stdout" content={result?.stdout} />
     </section>
   );
 }

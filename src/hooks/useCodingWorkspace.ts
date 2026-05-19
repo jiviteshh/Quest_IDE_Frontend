@@ -23,6 +23,7 @@ export function useCodingWorkspace() {
   const [stdin, setStdin] = useState("");
   const [executionResult, setExecutionResult] = useState<RunCodeResponse | null>(null);
   const [submissionResult, setSubmissionResult] = useState<SubmitCodeResponse | null>(null);
+  const [runSuiteResult, setRunSuiteResult] = useState<SubmitCodeResponse | null>(null);
   const [runError, setRunError] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isRunning, setIsRunning] = useState(false);
@@ -72,9 +73,64 @@ export function useCodingWorkspace() {
     setCodeByLanguage((current) => ({ ...current, [selectedLanguageId]: value }));
   }, [selectedLanguageId]);
 
-  const executeRunCode = useCallback(async () => {
+  // -----------------------------------------------------------------------
+  // RUN CODE — executes visible testcases only (or custom input if no cases)
+  // -----------------------------------------------------------------------
+  const executeRunCode = useCallback(async (visibleTestcases?: SubmissionTestcase[]) => {
     setRunError(null);
     setVerdict(null);
+    setRunSuiteResult(null);
+    setIsRunning(true);
+    try {
+      // If we have visible testcases, run them through the submit endpoint
+      // so we get per-testcase pass/fail results
+      if (visibleTestcases && visibleTestcases.length > 0) {
+        const result = await submitCode({
+          source_code: sourceCode,
+          language_id: selectedLanguageId,
+          testcases: visibleTestcases,
+        });
+        // Build a normalized RunCodeResponse from the first result for console display
+        const first = result.results?.[0];
+        const normalizedRun: RunCodeResponse = {
+          stdout: first?.stdout ?? "",
+          stderr: first?.stderr ?? "",
+          exit_code: first?.status === "Passed" ? 0 : 1,
+          status: { id: first?.status ?? "", description: result.verdict ?? "" },
+          language: result.language ?? "",
+          version: result.version ?? "",
+        };
+        setExecutionResult(normalizedRun);
+        setRunSuiteResult(result);
+        setVerdict(verdictFromSubmissionResult(result));
+        return;
+      }
+
+      // Fallback: run with custom stdin (no testcase comparison)
+      const result = await runCode({
+        source_code: sourceCode,
+        language_id: selectedLanguageId,
+        stdin,
+      });
+      const normalizedVerdict = verdictFromRunResult(result);
+      setExecutionResult(result);
+      setVerdict(normalizedVerdict);
+    } catch (error) {
+      setExecutionResult(null);
+      setVerdict("Internal Error");
+      setRunError(error instanceof Error ? error.message : "Run request failed. Check backend connectivity and try again.");
+    } finally {
+      setIsRunning(false);
+    }
+  }, [selectedLanguageId, sourceCode, stdin]);
+
+  // -----------------------------------------------------------------------
+  // CUSTOM INPUT — runs code with custom stdin only (no testcase comparison)
+  // -----------------------------------------------------------------------
+  const executeCustomInput = useCallback(async () => {
+    setRunError(null);
+    setVerdict(null);
+    setRunSuiteResult(null);
     setIsRunning(true);
     try {
       const result = await runCode({
@@ -85,16 +141,18 @@ export function useCodingWorkspace() {
       const normalizedVerdict = verdictFromRunResult(result);
       setExecutionResult(result);
       setVerdict(normalizedVerdict);
-      console.log("[workspace] run normalized", { result, verdict: normalizedVerdict });
     } catch (error) {
       setExecutionResult(null);
       setVerdict("Internal Error");
-      setRunError(error instanceof Error ? error.message : "Run request failed. Check backend connectivity and try again.");
+      setRunError(error instanceof Error ? error.message : "Run request failed. Check backend connectivity.");
     } finally {
       setIsRunning(false);
     }
   }, [selectedLanguageId, sourceCode, stdin]);
 
+  // -----------------------------------------------------------------------
+  // SUBMIT — executes ALL testcases (visible + hidden)
+  // -----------------------------------------------------------------------
   const executeSubmitCode = useCallback(async (testcases: SubmissionTestcase[]) => {
     if (!testcases.length) {
       setSubmitError("No testcases available. Parse a problem with examples first.");
@@ -109,7 +167,6 @@ export function useCodingWorkspace() {
         testcases,
       });
       setSubmissionResult(result);
-      console.log("[workspace] submit normalized", { result, verdict: verdictFromSubmissionResult(result) });
     } catch (error) {
       setSubmissionResult(null);
       setSubmitError(error instanceof Error ? error.message : "Submit request failed. Please retry.");
@@ -145,6 +202,7 @@ export function useCodingWorkspace() {
     stdin,
     setStdin,
     runResult: executionResult,
+    runSuiteResult,
     submission: submissionResult,
     runError,
     submitError,
@@ -154,6 +212,7 @@ export function useCodingWorkspace() {
     loadLanguages,
     executeRunCode,
     executeSubmitCode,
+    executeCustomInput,
     applyStarterCode,
   };
 }

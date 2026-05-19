@@ -1,8 +1,9 @@
 @import "tailwindcss";
+@import "../src/styles/theme.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--app-bg);
+  --foreground: var(--app-fg);
 }
 
 @theme inline {
@@ -19,8 +20,50 @@
   }
 }
 
+html,
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-geist-sans), "IBM Plex Sans", "Segoe UI", sans-serif;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
+/* Toast animation */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Resize handle transitions */
+.resize-handle-active {
+  background: rgba(99, 102, 241, 0.15);
 }

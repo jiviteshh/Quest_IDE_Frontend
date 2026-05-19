@@ -5,12 +5,12 @@ type VerdictBadgeProps = {
 };
 
 const verdictStyles: Record<string, string> = {
-  Accepted: "border-emerald-500/30 bg-emerald-500/10 text-emerald-300",
-  "Wrong Answer": "border-rose-500/30 bg-rose-500/10 text-rose-300",
-  "Runtime Error": "border-amber-500/30 bg-amber-500/10 text-amber-300",
-  "Compilation Error": "border-orange-500/30 bg-orange-500/10 text-orange-300",
-  "Time Limit Exceeded": "border-yellow-500/30 bg-yellow-500/10 text-yellow-300",
-  "Internal Error": "border-fuchsia-500/30 bg-fuchsia-500/10 text-fuchsia-300",
+  Accepted: "border-emerald-500/50 bg-emerald-500/10 text-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.2)]",
+  "Wrong Answer": "border-rose-500/50 bg-rose-500/10 text-rose-400 shadow-[0_0_10px_rgba(244,63,94,0.2)]",
+  "Runtime Error": "border-orange-500/50 bg-orange-500/10 text-orange-400 shadow-[0_0_10px_rgba(249,115,22,0.2)]",
+  "Compilation Error": "border-red-700/60 bg-red-950/40 text-red-300 shadow-[0_0_10px_rgba(185,28,28,0.2)]",
+  "Time Limit Exceeded": "border-yellow-500/50 bg-yellow-500/10 text-yellow-400 shadow-[0_0_10px_rgba(234,179,8,0.2)]",
+  "Internal Error": "border-fuchsia-500/50 bg-fuchsia-500/10 text-fuchsia-400",
 };
 
 const verdictIcons: Record<string, string> = {

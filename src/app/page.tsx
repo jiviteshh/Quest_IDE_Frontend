@@ -1,45 +1,79 @@
+/**
+ * Landing page with:
+ * - Modal-based API Key onboarding (shown on first visit)
+ * - Problem input form
+ * - Recent workspaces section
+ *
+ * Existing parse flow is UNCHANGED.
+ */
+
 "use client";
 
-import { useState } from "react";
-import MonacoEditor from "../components/MonacoEditor";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import LandingHero from "@/src/components/LandingHero";
+import ProblemInputForm from "@/src/components/ProblemInputForm";
+import GeneratingModal from "@/src/components/GeneratingModal";
+import RecentWorkspaces from "@/src/components/RecentWorkspaces";
+import HomepageFooter from "@/src/components/HomepageFooter";
+import APIKeyOnboardingModal from "@/src/components/APIKeyOnboardingModal";
+import { parseProblem } from "@/src/lib/api";
+import { saveParsedProblem, saveStoredProblem } from "@/src/lib/problem-storage";
+import { useAPIKey } from "@/src/hooks/useAPIKey";
+import type { RecentWorkspace } from "@/src/lib/workspace-storage";
 
-const starterCode = `function greet(name: string) {
-  return \`Hello, \${name}!\`;
-}
+export default function LandingPage() {
+  const router = useRouter();
+  const { hasAPIKey, isLoaded } = useAPIKey();
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [showAPIModal, setShowAPIModal] = useState(false);
 
-console.log(greet("Monaco"));
-`;
+  // Show API key modal on first visit if no key exists
+  useEffect(() => {
+    if (isLoaded && !hasAPIKey) {
+      setShowAPIModal(true);
+    }
+  }, [isLoaded, hasAPIKey]);
 
-export default function Page() {
-  const [language, setLanguage] = useState("typescript");
-  const [code, setCode] = useState(starterCode);
+  async function handleParseProblem(problemText: string) {
+    setIsGenerating(true);
+    try {
+      const parsed = await parseProblem({ problem_text: problemText });
+      console.log("[handleParseProblem] title:", parsed.title);
+      console.log("[handleParseProblem] testcases:", parsed.testcases?.length ?? 0);
+      saveParsedProblem(parsed);
+      router.push("/workspace");
+    } catch (error) {
+      setIsGenerating(false);
+      throw error; // Let the form handle the error display
+    }
+  }
+
+  function handleRecentSelect(workspace: RecentWorkspace) {
+    // The problem is already in localStorage — just navigate
+    if (!workspace.problem) return;
+    saveStoredProblem(workspace.problem);
+    router.push("/workspace");
+  }
 
   return (
-    <main className="min-h-screen w-full bg-zinc-950 px-4 py-8 text-zinc-100 sm:px-6 lg:px-8">
-      <section className="mx-auto flex w-full max-w-6xl flex-col gap-4">
-        <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
-          <h1 className="text-xl font-semibold tracking-tight text-zinc-100 sm:text-2xl">
-            Developer Editor
-          </h1>
-
-          <label className="flex items-center gap-2 text-sm text-zinc-300">
-            Language
-            <select
-              className="rounded-md border border-zinc-700 bg-zinc-900 px-2.5 py-1.5 text-zinc-100 outline-none ring-zinc-500 transition focus:ring-2"
-              value={language}
-              onChange={(event) => setLanguage(event.target.value)}
-            >
-              <option value="typescript">TypeScript</option>
-              <option value="javascript">JavaScript</option>
-              <option value="json">JSON</option>
-              <option value="css">CSS</option>
-              <option value="html">HTML</option>
-            </select>
-          </label>
-        </div>
-
-        <MonacoEditor language={language} value={code} onChange={setCode} />
-      </section>
-    </main>
+    <>
+      <GeneratingModal isOpen={isGenerating} />
+      <APIKeyOnboardingModal isOpen={showAPIModal} onClose={() => setShowAPIModal(false)} />
+      <main className="min-h-0 flex-1 overflow-auto bg-gradient-to-b from-zinc-950 via-zinc-950 to-zinc-900 px-4 py-6 text-zinc-100 md:px-6 md:py-7">
+        <section className="mx-auto w-full max-w-4xl pb-6">
+          <LandingHero
+            title="Bring Any Coding Problem Into an AI-Native IDE"
+            subtitle="Can't find the exact problem on any platform? Paste it into QuestIDE and turn it into a complete interactive workspace with execution, AI guidance, and testcase validation."
+          />
+          <ProblemInputForm 
+            onSubmit={handleParseProblem}
+            onAPIKeyClick={() => setShowAPIModal(true)}
+          />
+          <RecentWorkspaces onSelect={handleRecentSelect} />
+          <HomepageFooter />
+        </section>
+      </main>
+    </>
   );
 }

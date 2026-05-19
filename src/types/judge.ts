@@ -17,6 +17,8 @@ export type LanguageOption = {
   starterCode: string;
 };
 
+/* ── Run Code (single execution with custom stdin) ─────────── */
+
 export type RunCodeRequest = {
   source_code: string;
   language_id: number;
@@ -49,6 +51,8 @@ export type RunVerdict =
   | "Time Limit Exceeded"
   | "Internal Error";
 
+/* ── Submit / Run-against-testcases ────────────────────────── */
+
 export type SubmitCodeRequest = {
   source_code: string;
   language_id: number;
@@ -56,13 +60,17 @@ export type SubmitCodeRequest = {
 };
 
 export type SubmissionTestcase = {
-  input: string;
+  id?: number;
+  display_input?: string;
+  display_output?: string;
+  stdin: string;
   expected_output: string;
   is_hidden?: boolean;
 };
 
+/** Individual testcase result from the backend */
 export type TestcaseResult = {
-  testcase?: number;
+  testcase: number;
   input: string;
   expected_output: string;
   actual_output: string;
@@ -75,6 +83,7 @@ export type TestcaseResult = {
   memory_kb?: number | null;
 };
 
+/** Response from /judge/submit */
 export type SubmitCodeResponse = {
   verdict: string;
   passed_count?: number;
@@ -96,10 +105,21 @@ export type SubmitCodeResponse = {
   version?: string;
 };
 
+/* ── Parsed problem types ──────────────────────────────────── */
+
 export type ProblemExample = {
   input: string;
   output: string;
   explanation?: string;
+};
+
+export type ParsedTestcase = {
+  id: number;
+  display_input: string;
+  display_output: string;
+  stdin: string;
+  expected_output: string;
+  is_hidden: boolean;
 };
 
 export type ParsedProblem = {
@@ -108,5 +128,6 @@ export type ParsedProblem = {
   description?: string;
   constraints?: string[];
   examples?: ProblemExample[];
+  testcases?: ParsedTestcase[];
   starter_code?: string | Partial<Record<MonacoLanguage, string>>;
 };

@@ -32,7 +32,7 @@ export default function TestcasePanel({ submission }: TestcasePanelProps) {
         </div>
       ) : (
         <>
-          <div className="mb-3 flex flex-wrap gap-2">
+          <div className="mb-3 flex max-w-full flex-wrap gap-2 overflow-x-auto pb-1">
             {testcases.map((tc, index) => (
               <button
                 key={`${index}-${tc.input}`}
@@ -57,12 +57,7 @@ export default function TestcasePanel({ submission }: TestcasePanelProps) {
               <Panel title="Input" value={current.input} />
               <Panel title="Expected" value={current.expected_output} />
               <Panel title="Actual" value={current.actual_output} />
-              <Panel title="Stderr" value={current.stderr ?? ""} />
               <Panel title="Stdout" value={current.stdout ?? current.actual_output} />
-              <Panel
-                title="Execution Meta"
-                value={`status: ${current.status ?? "n/a"}\ntime_ms: ${current.execution_time_ms ?? "n/a"}\nmemory_kb: ${current.memory_kb ?? "n/a"}\nhidden: ${current.is_hidden ? "yes" : "no"}`}
-              />
             </div>
           ) : null}
         </>

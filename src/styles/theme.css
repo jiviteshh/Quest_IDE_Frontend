@@ -1,0 +1,11 @@
+/* Premium dark QuestIDE theme variables */
+:root {
+  --app-bg: #09090b;
+  --app-fg: #f4f4f5;
+  --app-muted: #a1a1aa;
+  --app-panel: #111114;
+  --app-border: #27272a;
+  --app-surface: #18181b;
+  --app-accent: #6366f1;
+  --app-accent-soft: rgba(99, 102, 241, 0.15);
+}
