@@ -8,7 +8,7 @@ import type {
   SupportedLanguageApiItem,
 } from "@/src/types/judge";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://16.112.68.119:8000";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://paddle-comma-omnivore.ngrok-free.dev";
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
