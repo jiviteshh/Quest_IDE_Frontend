@@ -1,8 +1,10 @@
 import axios from "axios";
 import type { RunCodeResponse, SubmitCodeResponse } from "@/src/types/judge";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://16.112.68.119:8000";
+
 const aiClient = axios.create({
-  baseURL: "http://127.0.0.1:8000",
+  baseURL: API_BASE_URL,
   timeout: 120_000,
 });
 
