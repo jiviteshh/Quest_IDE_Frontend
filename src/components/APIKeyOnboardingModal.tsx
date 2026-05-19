@@ -295,10 +295,34 @@ export default function APIKeyOnboardingModal({
                   </div>
                 </div>
 
-                {/* Step 3 */}
+                {/* Step 3 - NEW: Models Page */}
+                <div className="flex gap-3">
+                  <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border-2 border-green-500 bg-green-500/20">
+                    <span className="text-xs font-bold text-green-300">3</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-sm font-semibold text-zinc-100">Check Available Models</h3>
+                    <p className="mt-1 text-xs text-zinc-400">
+                      Navigate to the Models page to confirm you have access to:
+                    </p>
+                    <p className="mt-2 text-xs font-mono font-bold text-green-400 bg-green-500/10 border border-green-500/30 rounded px-2 py-1">
+                      qwen/qwen3-coder-480b-a35b-instruct
+                    </p>
+                    <a
+                      href="https://build.nvidia.com/models"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 inline-block rounded bg-green-500/20 px-2 py-1 text-xs font-mono text-green-300 transition hover:bg-green-500/30"
+                    >
+                      https://build.nvidia.com/models ↗
+                    </a>
+                  </div>
+                </div>
+
+                {/* Step 4 - Renumbered */}
                 <div className="flex gap-3">
                   <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border-2 border-blue-500 bg-blue-500/20">
-                    <span className="text-xs font-bold text-blue-300">3</span>
+                    <span className="text-xs font-bold text-blue-300">4</span>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-sm font-semibold text-zinc-100">Navigate to API Keys</h3>
@@ -313,26 +337,23 @@ export default function APIKeyOnboardingModal({
                   </div>
                 </div>
 
-                {/* Step 4 */}
+                {/* Step 5 - Renumbered */}
                 <div className="flex gap-3">
                   <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border-2 border-blue-500 bg-blue-500/20">
-                    <span className="text-xs font-bold text-blue-300">4</span>
+                    <span className="text-xs font-bold text-blue-300">5</span>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-sm font-semibold text-zinc-100">Generate New API Key</h3>
                     <p className="mt-1 text-xs text-zinc-400">
                       Click the "Generate API Key" button to create a new key.
                     </p>
-                    <p className="mt-2 text-xs text-blue-300/80 border-l border-blue-500/30 pl-2">
-                      Ensure your account has access to the <span className="font-mono">qwen3-coder-480b</span> model.
-                    </p>
                   </div>
                 </div>
 
-                {/* Step 5 */}
+                {/* Step 6 - Renumbered */}
                 <div className="flex gap-3">
                   <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border-2 border-blue-500 bg-blue-500/20">
-                    <span className="text-xs font-bold text-blue-300">5</span>
+                    <span className="text-xs font-bold text-blue-300">6</span>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-sm font-semibold text-zinc-100">Copy Your Key</h3>
@@ -342,10 +363,10 @@ export default function APIKeyOnboardingModal({
                   </div>
                 </div>
 
-                {/* Step 6 */}
+                {/* Step 7 - Renumbered */}
                 <div className="flex gap-3">
                   <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border-2 border-blue-500 bg-blue-500/20">
-                    <span className="text-xs font-bold text-blue-300">6</span>
+                    <span className="text-xs font-bold text-blue-300">7</span>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-sm font-semibold text-zinc-100">Paste into QuestIDE</h3>
