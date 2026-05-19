@@ -283,13 +283,18 @@ export default function APIKeyOnboardingModal({
                     <span className="text-xs font-bold text-green-300">3</span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-sm font-semibold text-zinc-100">Search for QuestIDE Model</h3>
+                    <h3 className="text-sm font-semibold text-zinc-100">Open QuestIDE Model</h3>
                     <p className="mt-1 text-xs text-zinc-400">
-                      Search for and open the free model:
+                      Click the link to open the QuestIDE model directly:
                     </p>
-                    <p className="mt-2 text-xs font-mono font-bold text-green-400 bg-green-500/10 border border-green-500/30 rounded px-2 py-1">
-                      qwen/qwen3-coder-480b-a35b-instruct
-                    </p>
+                    <a
+                      href="https://build.nvidia.com/qwen/qwen3-coder-480b-a35b-instruct"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 inline-block rounded bg-green-500/20 px-2 py-1 text-xs font-mono text-green-300 transition hover:bg-green-500/30 break-all"
+                    >
+                      https://build.nvidia.com/qwen/qwen3-coder-480b-a35b-instruct ↗
+                    </a>
                   </div>
                 </div>
 
@@ -332,12 +337,12 @@ export default function APIKeyOnboardingModal({
                   ← Back
                 </button>
                 <a
-                  href="https://build.nvidia.com/models"
+                  href="https://build.nvidia.com/qwen/qwen3-coder-480b-a35b-instruct"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 rounded-lg bg-gradient-to-r from-green-600 to-green-700 px-4 py-2 text-center text-sm font-semibold text-white transition hover:from-green-500 hover:to-green-600"
                 >
-                  Open NVIDIA Models ↗
+                  Open QuestIDE Model ↗
                 </a>
               </div>
             </>
